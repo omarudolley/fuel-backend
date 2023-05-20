@@ -13,7 +13,7 @@ router.get("/", isAuthenticated, async function (req, res, next) {
 router.post("/", isAuthenticated, async function (req, res, next) {
   const data = req.body;
   try {
-    await Vehicles.create({ ...data });
+    await Vehicles.create({ userID: req.user._id, ...data });
   } catch (e) {
     return res.send({ ok: false, error: e });
   }

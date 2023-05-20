@@ -3,6 +3,9 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const Users = require("../db/users");
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
+
+const secret = process.env.SECRET;
 
 // login user
 router.post("/", async function (req, res, next) {
@@ -22,7 +25,7 @@ router.post("/", async function (req, res, next) {
     {
       ...user,
     },
-    "secret"
+    secret
   );
 
   res.status(200).send({ token });

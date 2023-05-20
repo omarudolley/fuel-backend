@@ -2,23 +2,31 @@ const mongoose = require("mongoose");
 
 const vehicleSchema = mongoose.Schema(
   {
-    _id: {},
     userID: {
       type: mongoose.ObjectId,
     },
     plateCode: {
       type: Number,
+      require: true,
     },
     plateRegion: {
       type: String,
+      require: true,
     },
     plateNumber: {
       type: Number,
+      require: true,
     },
     fuelType: {
       type: String,
       enum: ["Regular", "Gasoline"],
       default: "Regular",
+    },
+    vehicleType: {
+      type: String,
+    },
+    vehicleModel: {
+      type: String,
     },
     status: {
       type: String,
