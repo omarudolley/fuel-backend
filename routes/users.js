@@ -3,9 +3,10 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const Users = require("../db/users");
 const salt = bcrypt.genSaltSync(10);
+const isAuthenticated = require("../middlewares/index");
 
 /* GET users. */
-router.get("/", async function (req, res, next) {
+router.get("/", isAuthenticated, async function (req, res, next) {
   const users = await Users.find({});
   res.send(users);
 });
